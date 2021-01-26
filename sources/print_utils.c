@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aannett <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/19 20:09:40 by aannett           #+#    #+#             */
-/*   Updated: 2021/01/26 04:31:31 by aannett          ###   ########.fr       */
+/*   Created: 2021/01/24 20:07:14 by aannett           #+#    #+#             */
+/*   Updated: 2021/01/24 20:07:24 by aannett          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_putchar(char c)
+char			*tolower_str(char *str)
 {
-	write(1, &c, 1);
-	return (1);
-}
-
-int			putstr_size(const char *str, int size)
-{
-	int		i;
+	int			i;
 
 	i = 0;
-	if (size >= 0)
+	while (str[i])
 	{
-		while (i < size && str[i])
-			ft_putchar(str[i++]);
+		if (ft_isalpha(str[i]))
+			str[i] += 'a' - 'A';
+		i++;
 	}
-	else
-	{
-		while (str[i])
-			ft_putchar(str[i++]);
-	}
-	return (i);
+	return (str);
 }

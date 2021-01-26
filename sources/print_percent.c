@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   print_percent.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aannett <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/19 20:09:40 by aannett           #+#    #+#             */
-/*   Updated: 2021/01/26 04:31:31 by aannett          ###   ########.fr       */
+/*   Created: 2021/01/25 19:51:03 by aannett           #+#    #+#             */
+/*   Updated: 2021/01/26 04:34:30 by aannett          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_putchar(char c)
+int					print_percent(t_flags flag)
 {
-	write(1, &c, 1);
-	return (1);
-}
+	int				ret;
+	char			c;
 
-int			putstr_size(const char *str, int size)
-{
-	int		i;
-
-	i = 0;
-	if (size >= 0)
+	c = flag.zero ? '0' : ' ';
+	if (flag.minus)
+		c = ' ';
+	flag.width -= 1;
+	ret = 1;
+	if (flag.minus)
+		ft_putchar('%');
+	while (flag.width-- > 0)
 	{
-		while (i < size && str[i])
-			ft_putchar(str[i++]);
+		ft_putchar(c);
+		ret++;
 	}
-	else
-	{
-		while (str[i])
-			ft_putchar(str[i++]);
-	}
-	return (i);
+	if (!flag.minus)
+		ft_putchar('%');
+	return (ret);
 }
